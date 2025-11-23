@@ -1,0 +1,81 @@
+import { Facebook, Instagram, Mail } from "lucide-react";
+
+const Footer = () => {
+  return (
+    <footer className="bg-foreground text-background py-12 px-4">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid gap-8 md:grid-cols-3">
+          <div className="space-y-4">
+            <h3 className="font-serif text-2xl font-bold">Sky Above Samui</h3>
+            <p className="text-background/80">
+              Where breathtaking views meet authentic Thai flavors
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            <h4 className="font-semibold text-lg">Quick Links</h4>
+            <div className="flex flex-col gap-2">
+              <button 
+                onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+                className="text-left text-background/80 hover:text-background transition-smooth"
+              >
+                About Us
+              </button>
+              <button 
+                onClick={() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })}
+                className="text-left text-background/80 hover:text-background transition-smooth"
+              >
+                Menu
+              </button>
+              <button 
+                onClick={() => document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" })}
+                className="text-left text-background/80 hover:text-background transition-smooth"
+              >
+                Gallery
+              </button>
+              <button 
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                className="text-left text-background/80 hover:text-background transition-smooth"
+              >
+                Contact
+              </button>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <h4 className="font-semibold text-lg">Follow Us</h4>
+            <div className="flex gap-4">
+              <a 
+                href="#" 
+                className="rounded-full bg-background/10 p-3 transition-smooth hover:bg-background/20"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a 
+                href="#" 
+                className="rounded-full bg-background/10 p-3 transition-smooth hover:bg-background/20"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a 
+                href="mailto:hello@skyabovesamui.com" 
+                className="rounded-full bg-background/10 p-3 transition-smooth hover:bg-background/20"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-12 border-t border-background/20 pt-8 text-center text-sm text-background/60">
+          <p>&copy; {new Date().getFullYear()} Sky Above Samui. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
