@@ -1,12 +1,13 @@
 import { Facebook, Instagram, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background py-12 px-4">
+    <footer className="bg-tropical-terracotta text-background py-12 px-4">
       <div className="container mx-auto max-w-7xl">
         <div className="grid gap-8 md:grid-cols-3">
           <div className="space-y-4">
-            <h3 className="font-serif text-2xl font-bold">Sky Above Samui</h3>
+            <h3 className="font-serif text-2xl font-bold">Sora Sierra</h3>
             <p className="text-background/80">
               Where breathtaking views meet authentic Thai flavors
             </p>
@@ -27,12 +28,12 @@ const Footer = () => {
               >
                 Menu
               </button>
-              <button 
-                onClick={() => document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" })}
+              <Link 
+                to="/gallery"
                 className="text-left text-background/80 hover:text-background transition-smooth"
               >
                 Gallery
-              </button>
+              </Link>
               <button 
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="text-left text-background/80 hover:text-background transition-smooth"
@@ -53,14 +54,16 @@ const Footer = () => {
                 <Facebook className="h-5 w-5" />
               </a>
               <a 
-                href="#" 
+                href="https://www.instagram.com/sorasierrasamui/" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-background/10 p-3 transition-smooth hover:bg-background/20"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a 
-                href="mailto:hello@skyabovesamui.com" 
+                href="mailto:hello@sorasierra.com" 
                 className="rounded-full bg-background/10 p-3 transition-smooth hover:bg-background/20"
                 aria-label="Email"
               >
@@ -71,7 +74,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 border-t border-background/20 pt-8 text-center text-sm text-background/60">
-          <p>&copy; {new Date().getFullYear()} Sky Above Samui. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Sora Sierra. All rights reserved.</p>
         </div>
       </div>
     </footer>

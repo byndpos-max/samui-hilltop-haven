@@ -59,7 +59,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                  <p className="text-muted-foreground">hello@skyabovesamui.com</p>
+                  <p className="text-muted-foreground">hello@sorasierra.com</p>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@ const Contact = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Sky Above Samui Location"
+              title="Sora Sierra Location"
             />
           </div>
         </div>
