@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,15 +17,26 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const handleNavigation = (id: string, isRoute?: boolean) => {
+    if (isRoute) {
+      navigate('/gallery');
+    } else {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
     setIsMobileMenuOpen(false);
   };
 
   const navLinks = [
     { label: "About", id: "about" },
     { label: "Menu", id: "menu" },
-    { label: "Gallery", id: "gallery" },
+    { label: "Gallery", id: "gallery", isRoute: true },
     { label: "Contact", id: "contact" },
   ];
 
@@ -42,7 +56,7 @@ const Navigation = () => {
               className="font-serif text-2xl font-bold transition-smooth hover:text-primary"
             >
               <span className={isScrolled ? "text-foreground" : "text-white drop-shadow-lg"}>
-                Sky Above Samui
+                Sora Sierra
               </span>
             </button>
             
@@ -50,7 +64,7 @@ const Navigation = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.id}
-                  onClick={() => scrollToSection(link.id)}
+                  onClick={() => handleNavigation(link.id, link.isRoute)}
                   className={`font-medium transition-smooth hover:text-primary ${
                     isScrolled ? "text-foreground" : "text-white drop-shadow-lg"
                   }`}
@@ -89,7 +103,7 @@ const Navigation = () => {
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => scrollToSection(link.id)}
+                onClick={() => handleNavigation(link.id, link.isRoute)}
                 className="text-2xl font-medium text-foreground transition-smooth hover:text-primary"
               >
                 {link.label}

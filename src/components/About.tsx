@@ -11,7 +11,7 @@ const About = () => {
               A Taste of Paradise
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Perched high above the stunning coastline of Koh Samui, Sky Above Samui offers an unforgettable 
+              Perched high above the stunning coastline of Koh Samui, Sora Sierra offers an unforgettable 
               dining experience where authentic Thai flavors meet breathtaking panoramic ocean views.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -51,7 +51,7 @@ const About = () => {
             <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-soft">
               <img 
                 src={interiorSwings} 
-                alt="Sky Above Samui interior with swings and ocean view"
+                alt="Sora Sierra interior with swings and ocean view"
                 className="h-full w-full object-cover transition-smooth hover:scale-105"
               />
             </div>

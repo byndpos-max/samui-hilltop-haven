@@ -18,7 +18,7 @@ const Hero = () => {
       
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
         <h1 className="mb-6 font-serif text-5xl font-bold text-white drop-shadow-2xl md:text-7xl lg:text-8xl animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          Sky Above Samui
+          Sora Sierra
         </h1>
         <p className="mb-8 max-w-2xl text-lg text-white/90 drop-shadow-lg md:text-xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
           Experience breathtaking hilltop views, authentic Thai cuisine, and tropical paradise

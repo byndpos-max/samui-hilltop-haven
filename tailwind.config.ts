@@ -53,6 +53,7 @@ export default {
           rust: "hsl(var(--tropical-rust))",
           sand: "hsl(var(--tropical-sand))",
           palm: "hsl(var(--tropical-palm))",
+          terracotta: "hsl(var(--tropical-terracotta))",
         },
       },
       fontFamily: {
