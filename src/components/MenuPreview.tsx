@@ -50,9 +50,9 @@ const MenuPreview = () => {
   }, [api]);
 
   return (
-    <section id="menu" className="py-20 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-5xl">
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom duration-1000">
+    <section id="menu" className="py-20 bg-muted/30">
+      <div className="container mx-auto max-w-5xl px-4 mb-12">
+        <div className="text-center animate-in fade-in slide-in-from-bottom duration-1000">
           <h2 className="font-serif text-4xl font-bold text-foreground mb-4 md:text-5xl">
             Our Menu
           </h2>
@@ -60,46 +60,47 @@ const MenuPreview = () => {
             Discover authentic Thai cuisine, all-day brunch, healthy bowls, signature cocktails, and more
           </p>
         </div>
+      </div>
 
-        {/* Menu Preview Carousel */}
-        <div className="relative px-12 md:px-16 mb-8">
-          <Carousel
-            setApi={setApi}
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {previewPages.map((page, index) => (
-                <CarouselItem 
-                  key={index} 
-                  className="pl-2 md:pl-4 basis-[70%] sm:basis-[50%] md:basis-[40%] lg:basis-[30%]"
+      {/* Menu Preview Carousel - Full Width */}
+      <div className="relative mb-8">
+        <Carousel
+          setApi={setApi}
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {previewPages.map((page, index) => (
+              <CarouselItem 
+                key={index} 
+                className="pl-2 md:pl-4 basis-[45%] sm:basis-[35%] md:basis-[28%] lg:basis-[22%] xl:basis-[18%]"
+              >
+                <button
+                  onClick={() => navigate('/menu')}
+                  className="group relative w-full overflow-hidden rounded-xl shadow-soft hover:shadow-glow transition-smooth focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
-                  <button
-                    onClick={() => navigate('/menu')}
-                    className="group relative w-full overflow-hidden rounded-xl shadow-soft hover:shadow-glow transition-smooth focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  >
-                    <div className="relative w-full" style={{ paddingBottom: '133.33%' }}>
-                      <img
-                        src={page.src}
-                        alt={`Menu - ${page.title}`}
-                        className="absolute inset-0 h-full w-full object-cover transition-smooth group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-smooth" />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent p-3">
-                        <p className="text-sm text-white font-medium">{page.title}</p>
-                      </div>
+                  <div className="relative w-full" style={{ paddingBottom: '133.33%' }}>
+                    <img
+                      src={page.src}
+                      alt={`Menu - ${page.title}`}
+                      className="absolute inset-0 h-full w-full object-cover transition-smooth group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-smooth" />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent p-3">
+                      <p className="text-sm text-white font-medium">{page.title}</p>
                     </div>
-                  </button>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-0 h-10 w-10 bg-background/90 hover:bg-background shadow-soft" />
-            <CarouselNext className="right-0 h-10 w-10 bg-background/90 hover:bg-background shadow-soft" />
-          </Carousel>
+                  </div>
+                </button>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-2 md:left-4 h-10 w-10 bg-background/90 hover:bg-background shadow-soft" />
+          <CarouselNext className="right-2 md:right-4 h-10 w-10 bg-background/90 hover:bg-background shadow-soft" />
+        </Carousel>
 
           {/* Page Indicator */}
           <div className="flex justify-center mt-6 gap-1.5">
@@ -118,16 +119,15 @@ const MenuPreview = () => {
           </div>
         </div>
 
-        {/* View Full Menu Button */}
-        <div className="text-center">
-          <Button 
-            size="lg" 
-            onClick={() => navigate('/menu')}
-            className="bg-primary hover:bg-primary/90"
-          >
-            View Full Menu
-          </Button>
-        </div>
+      {/* View Full Menu Button */}
+      <div className="text-center px-4">
+        <Button 
+          size="lg" 
+          onClick={() => navigate('/menu')}
+          className="bg-primary hover:bg-primary/90"
+        >
+          View Full Menu
+        </Button>
       </div>
     </section>
   );
