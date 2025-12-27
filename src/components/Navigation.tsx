@@ -17,9 +17,9 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavigation = (id: string, isRoute?: boolean) => {
-    if (isRoute) {
-      navigate('/gallery');
+  const handleNavigation = (id: string, routePath?: string) => {
+    if (routePath) {
+      navigate(routePath);
     } else {
       if (location.pathname !== '/') {
         navigate('/');
@@ -35,8 +35,8 @@ const Navigation = () => {
 
   const navLinks = [
     { label: "About", id: "about" },
-    { label: "Menu", id: "menu" },
-    { label: "Gallery", id: "gallery", isRoute: true },
+    { label: "Menu", id: "menu", routePath: "/menu" },
+    { label: "Gallery", id: "gallery", routePath: "/gallery" },
     { label: "Contact", id: "contact" },
   ];
 
@@ -64,7 +64,7 @@ const Navigation = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.id}
-                  onClick={() => handleNavigation(link.id, link.isRoute)}
+                  onClick={() => handleNavigation(link.id, link.routePath)}
                   className={`font-medium transition-smooth hover:text-primary ${
                     isScrolled ? "text-foreground" : "text-white drop-shadow-lg"
                   }`}
@@ -106,7 +106,7 @@ const Navigation = () => {
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => handleNavigation(link.id, link.isRoute)}
+                onClick={() => handleNavigation(link.id, link.routePath)}
                 className="text-2xl font-medium text-foreground transition-smooth hover:text-primary"
               >
                 {link.label}
