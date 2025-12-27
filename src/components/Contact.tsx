@@ -18,8 +18,8 @@ const Contact = () => {
             
             <div className="space-y-6">
               <div className="flex gap-4">
-                <div className="flex-shrink-0 rounded-full bg-accent/20 p-3">
-                  <MapPin className="h-5 w-5 text-tropical-ocean" />
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <MapPin className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Location</h3>
@@ -31,8 +31,8 @@ const Contact = () => {
               </div>
               
               <div className="flex gap-4">
-                <div className="flex-shrink-0 rounded-full bg-accent/20 p-3">
-                  <Clock className="h-5 w-5 text-tropical-palm" />
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Clock className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Hours</h3>
@@ -44,8 +44,8 @@ const Contact = () => {
               </div>
               
               <div className="flex gap-4 items-center">
-                <div className="flex-shrink-0 rounded-full bg-accent/20 p-3">
-                  <MessageCircle className="h-5 w-5 text-tropical-rust" />
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <MessageCircle className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">WhatsApp</h3>
@@ -62,7 +62,7 @@ const Contact = () => {
               </div>
               
               <div className="flex gap-4 items-center">
-                <div className="flex-shrink-0 rounded-full bg-accent/20 p-3">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div>
