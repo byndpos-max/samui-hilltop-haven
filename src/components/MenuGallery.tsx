@@ -254,25 +254,20 @@ const MenuGallery = () => {
                   </Carousel>
                 </div>
 
-                {/* Thumbnail Navigation */}
-                <div className="flex-shrink-0 p-4 border-t border-border/50 overflow-x-auto bg-background">
-                  <div className="flex gap-2 justify-start sm:justify-center min-w-max sm:min-w-0">
-                    {menuPages.map((page, index) => (
+                {/* Pagination Dots */}
+                <div className="flex-shrink-0 py-4 border-t border-border/50 bg-background">
+                  <div className="flex gap-1.5 justify-center flex-wrap px-4">
+                    {menuPages.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => lightboxApi?.scrollTo(index)}
-                        className={`flex-shrink-0 w-10 h-14 sm:w-12 sm:h-16 rounded overflow-hidden transition-smooth ${
+                        className={`h-2 rounded-full transition-smooth ${
                           lightboxApi?.selectedScrollSnap() === index
-                            ? "ring-2 ring-primary ring-offset-2" 
-                            : "opacity-50 hover:opacity-100"
+                            ? "w-6 bg-primary" 
+                            : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
                         }`}
-                      >
-                        <img
-                          src={page.src}
-                          alt={`Thumbnail ${index + 1}`}
-                          className="h-full w-full object-cover"
-                        />
-                      </button>
+                        aria-label={`Go to page ${index + 1}`}
+                      />
                     ))}
                   </div>
                 </div>
