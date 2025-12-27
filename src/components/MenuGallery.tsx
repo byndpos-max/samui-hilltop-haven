@@ -209,7 +209,7 @@ const MenuGallery = () => {
                 </div>
 
                 {/* Lightbox Carousel */}
-                <div className="flex-1 relative flex items-center justify-center overflow-hidden">
+                <div className="flex-1 relative overflow-hidden min-h-0">
                   <Carousel
                     setApi={setLightboxApi}
                     opts={{
@@ -219,14 +219,17 @@ const MenuGallery = () => {
                     }}
                     className="w-full h-full"
                   >
-                    <CarouselContent className="h-full -ml-0">
+                    <CarouselContent className="h-full ml-0">
                       {menuPages.map((page, index) => (
-                        <CarouselItem key={index} className="h-full pl-0 flex items-center justify-center p-4">
-                          <img
-                            src={page.src}
-                            alt={`Menu page ${index + 1} - ${page.title}`}
-                            className="max-h-full max-w-full object-contain rounded-lg shadow-soft"
-                          />
+                        <CarouselItem key={index} className="h-full pl-0">
+                          <div className="h-full w-full flex items-center justify-center p-4">
+                            <img
+                              src={page.src}
+                              alt={`Menu page ${index + 1} - ${page.title}`}
+                              className="max-h-full max-w-full w-auto h-auto object-contain rounded-lg shadow-soft"
+                              style={{ maxHeight: 'calc(100%)', maxWidth: 'calc(100%)' }}
+                            />
+                          </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
