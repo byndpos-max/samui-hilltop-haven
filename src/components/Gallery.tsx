@@ -32,42 +32,132 @@ import ambiance14 from "@/assets/gallery/ambiance-14.jpg";
 import ambiance15 from "@/assets/gallery/ambiance-15.jpg";
 import ambiance16 from "@/assets/gallery/ambiance-16.jpg";
 
+type GalleryItem = 
+  | { type: 'single'; src: string; alt: string; span?: string }
+  | { type: 'wide'; src: string; alt: string }
+  | { type: 'stacked'; images: { src: string; alt: string }[] };
+
 const Gallery = () => {
-  const images = [
-    { src: heroView, alt: "Breathtaking ocean view from Sora Sierra", span: "md:col-span-2" },
-    { src: entrance, alt: "Entrance to Sora Sierra with tropical plants" },
-    { src: interiorSwings, alt: "Interior dining area with hanging swings" },
-    { src: dish01, alt: "Crispy grilled chicken with sweet chili sauce" },
-    { src: dish02, alt: "Thai cuisine spread with curry, soup and fresh vegetables", span: "md:col-span-2" },
-    { src: dish03, alt: "Shrimp fried rice with fresh cucumber garnish" },
-    { src: dish04, alt: "Pad Thai wrapped in egg with shrimp and peanuts" },
-    { src: dish05, alt: "Creamy Panang curry with chicken" },
-    { src: dish06, alt: "Thai curry dishes with steamed rice", span: "md:col-span-2" },
-    { src: dish07, alt: "Cashew chicken stir-fry with vegetables" },
-    { src: dish08, alt: "Stir-fried chicken with cashews and bell peppers" },
-    { src: dish09, alt: "Crispy sweet potato fries with spicy dipping sauce" },
-    { src: dish10, alt: "Shredded taro fries with Thai chili sauce" },
-    { src: dish11, alt: "Smoked salmon bagel with cream cheese and capers" },
-    { src: dish12, alt: "Full English breakfast with eggs, sausage, bacon and beans", span: "md:col-span-2" },
-    { src: dish13, alt: "Eggs Benedict with hollandaise sauce and latte" },
-    { src: dish14, alt: "Gourmet sandwich with crispy potatoes" },
-    { src: ambiance01, alt: "Sora Sierra entrance with tropical architecture", span: "md:col-span-2" },
-    { src: ambiance02, alt: "Couple enjoying breakfast with ocean view" },
-    { src: ambiance03, alt: "Friends dining together with panoramic sea view", span: "md:col-span-2" },
-    { src: ambiance04, alt: "Group dining under thatched roof with ocean backdrop" },
-    { src: ambiance05, alt: "Guests enjoying Thai feast with jungle and sea views", span: "md:col-span-2" },
-    { src: ambiance06, alt: "Friends laughing over delicious Thai food" },
-    { src: ambiance07, alt: "Guests sharing a Thai feast in tropical setting" },
-    { src: ambiance08, alt: "Friends dining with mountain jungle views", span: "md:col-span-2" },
-    { src: ambiance09, alt: "Group enjoying Thai cuisine in open-air restaurant" },
-    { src: ambiance10, alt: "Happy guests savoring Thai dishes with views" },
-    { src: ambiance11, alt: "Friends gathered for Thai feast at Sora Sierra", span: "md:col-span-2" },
-    { src: ambiance12, alt: "Group dining with spectacular ocean and jungle views" },
-    { src: ambiance13, alt: "Couple enjoying romantic dinner with sea view", span: "md:col-span-2" },
-    { src: ambiance14, alt: "Thai feast spread with panoramic ocean backdrop" },
-    { src: ambiance15, alt: "Authentic Thai dishes with tropical garden view", span: "md:col-span-2" },
-    { src: ambiance16, alt: "Thai cuisine display with island mountain views" },
+  const galleryItems: GalleryItem[] = [
+    { type: 'wide', src: heroView, alt: "Breathtaking ocean view from Sora Sierra" },
+    { type: 'stacked', images: [
+      { src: entrance, alt: "Entrance to Sora Sierra with tropical plants" },
+      { src: interiorSwings, alt: "Interior dining area with hanging swings" },
+    ]},
+    { type: 'single', src: dish01, alt: "Crispy grilled chicken with sweet chili sauce" },
+    { type: 'wide', src: dish02, alt: "Thai cuisine spread with curry, soup and fresh vegetables" },
+    { type: 'stacked', images: [
+      { src: dish03, alt: "Shrimp fried rice with fresh cucumber garnish" },
+      { src: dish04, alt: "Pad Thai wrapped in egg with shrimp and peanuts" },
+    ]},
+    { type: 'single', src: dish05, alt: "Creamy Panang curry with chicken" },
+    { type: 'wide', src: dish06, alt: "Thai curry dishes with steamed rice" },
+    { type: 'stacked', images: [
+      { src: dish07, alt: "Cashew chicken stir-fry with vegetables" },
+      { src: dish08, alt: "Stir-fried chicken with cashews and bell peppers" },
+    ]},
+    { type: 'single', src: dish09, alt: "Crispy sweet potato fries with spicy dipping sauce" },
+    { type: 'single', src: dish10, alt: "Shredded taro fries with Thai chili sauce" },
+    { type: 'single', src: dish11, alt: "Smoked salmon bagel with cream cheese and capers" },
+    { type: 'wide', src: dish12, alt: "Full English breakfast with eggs, sausage, bacon and beans" },
+    { type: 'stacked', images: [
+      { src: dish13, alt: "Eggs Benedict with hollandaise sauce and latte" },
+      { src: dish14, alt: "Gourmet sandwich with crispy potatoes" },
+    ]},
+    { type: 'wide', src: ambiance01, alt: "Sora Sierra entrance with tropical architecture" },
+    { type: 'stacked', images: [
+      { src: ambiance02, alt: "Couple enjoying breakfast with ocean view" },
+      { src: ambiance06, alt: "Friends laughing over delicious Thai food" },
+    ]},
+    { type: 'wide', src: ambiance03, alt: "Friends dining together with panoramic sea view" },
+    { type: 'stacked', images: [
+      { src: ambiance04, alt: "Group dining under thatched roof with ocean backdrop" },
+      { src: ambiance07, alt: "Guests sharing a Thai feast in tropical setting" },
+    ]},
+    { type: 'wide', src: ambiance05, alt: "Guests enjoying Thai feast with jungle and sea views" },
+    { type: 'stacked', images: [
+      { src: ambiance09, alt: "Group enjoying Thai cuisine in open-air restaurant" },
+      { src: ambiance10, alt: "Happy guests savoring Thai dishes with views" },
+    ]},
+    { type: 'wide', src: ambiance08, alt: "Friends dining with mountain jungle views" },
+    { type: 'stacked', images: [
+      { src: ambiance11, alt: "Friends gathered for Thai feast at Sora Sierra" },
+      { src: ambiance12, alt: "Group dining with spectacular ocean and jungle views" },
+    ]},
+    { type: 'wide', src: ambiance13, alt: "Couple enjoying romantic dinner with sea view" },
+    { type: 'stacked', images: [
+      { src: ambiance14, alt: "Thai feast spread with panoramic ocean backdrop" },
+      { src: ambiance16, alt: "Thai cuisine display with island mountain views" },
+    ]},
+    { type: 'single', src: ambiance15, alt: "Authentic Thai dishes with tropical garden view", span: "md:col-span-3" },
   ];
+
+  const renderGalleryItem = (item: GalleryItem, index: number) => {
+    if (item.type === 'wide') {
+      return (
+        <div 
+          key={index}
+          className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-glow transition-smooth md:col-span-2 md:row-span-2 animate-in fade-in zoom-in duration-1000"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          <div className="h-full">
+            <img 
+              src={item.src} 
+              alt={item.alt}
+              className="h-full w-full object-cover transition-smooth group-hover:scale-110"
+              loading="lazy"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-smooth" />
+        </div>
+      );
+    }
+
+    if (item.type === 'stacked') {
+      return (
+        <div 
+          key={index}
+          className="flex flex-col gap-4 md:row-span-2 animate-in fade-in zoom-in duration-1000"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          {item.images.map((img, imgIndex) => (
+            <div 
+              key={imgIndex}
+              className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-glow transition-smooth flex-1"
+            >
+              <div className="h-full">
+                <img 
+                  src={img.src} 
+                  alt={img.alt}
+                  className="h-full w-full object-cover transition-smooth group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-smooth" />
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    return (
+      <div 
+        key={index}
+        className={`group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-glow transition-smooth animate-in fade-in zoom-in duration-1000 ${item.span || ''}`}
+        style={{ animationDelay: `${index * 100}ms` }}
+      >
+        <div className="aspect-[4/3]">
+          <img 
+            src={item.src} 
+            alt={item.alt}
+            className="h-full w-full object-cover transition-smooth group-hover:scale-110"
+            loading="lazy"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-smooth" />
+      </div>
+    );
+  };
 
   return (
     <section id="gallery" className="py-20 px-4 bg-background">
@@ -81,24 +171,8 @@ const Gallery = () => {
           </p>
         </div>
         
-        <div className="grid gap-4 md:grid-cols-3">
-          {images.map((image, index) => (
-            <div 
-              key={index}
-              className={`group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-glow transition-smooth ${image.span || ''} animate-in fade-in zoom-in duration-1000`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="aspect-[4/3]">
-                <img 
-                  src={image.src} 
-                  alt={image.alt}
-                  className="h-full w-full object-cover transition-smooth group-hover:scale-110"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-smooth" />
-            </div>
-          ))}
+        <div className="grid gap-4 md:grid-cols-3 auto-rows-fr">
+          {galleryItems.map((item, index) => renderGalleryItem(item, index))}
         </div>
       </div>
     </section>
