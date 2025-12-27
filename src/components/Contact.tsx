@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Clock, MessageCircle, Mail } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -43,30 +43,38 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="flex gap-4">
+              <div className="flex gap-4 items-center">
                 <div className="flex-shrink-0 rounded-full bg-accent/20 p-3">
-                  <Phone className="h-5 w-5 text-tropical-rust" />
+                  <MessageCircle className="h-5 w-5 text-tropical-rust" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                  <p className="text-muted-foreground">+66 XX XXX XXXX</p>
+                  <h3 className="font-semibold text-foreground mb-2">WhatsApp</h3>
+                  <Button variant="outline" size="sm" asChild>
+                    <a 
+                      href="https://wa.me/66806388101" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      Message Us
+                    </a>
+                  </Button>
                 </div>
               </div>
               
-              <div className="flex gap-4">
+              <div className="flex gap-4 items-center">
                 <div className="flex-shrink-0 rounded-full bg-accent/20 p-3">
                   <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                  <p className="text-muted-foreground">hello@sorasierra.com</p>
+                  <h3 className="font-semibold text-foreground mb-2">Email</h3>
+                  <Button variant="outline" size="sm" asChild>
+                    <a href="mailto:hello@sorasierra.com">
+                      Send Email
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>
-            
-            <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 transition-smooth">
-              Make a Reservation
-            </Button>
           </div>
           
           <div className="relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-soft animate-in fade-in slide-in-from-right duration-1000">

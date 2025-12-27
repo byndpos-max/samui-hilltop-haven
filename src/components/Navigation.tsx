@@ -74,13 +74,16 @@ const Navigation = () => {
               ))}
               <Button 
                 size="sm"
+                asChild
                 className={`transition-smooth ${
                   isScrolled 
                     ? "bg-primary hover:bg-primary/90" 
                     : "bg-white/20 backdrop-blur-sm hover:bg-white hover:text-foreground border-2 border-white text-white"
                 }`}
               >
-                Reserve Now
+                <a href="mailto:hello@sorasierra.com?subject=Reservation Request">
+                  Reserve Now
+                </a>
               </Button>
             </div>
             
@@ -109,8 +112,10 @@ const Navigation = () => {
                 {link.label}
               </button>
             ))}
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
-              Reserve Now
+            <Button size="lg" asChild className="bg-primary hover:bg-primary/90">
+              <a href="mailto:hello@sorasierra.com?subject=Reservation Request">
+                Reserve Now
+              </a>
             </Button>
           </div>
         </div>
