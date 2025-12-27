@@ -56,7 +56,7 @@ const Navigation = () => {
         <div className="container mx-auto px-4">
           <div className="flex h-20 items-center justify-between">
             <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => navigate('/')}
               className="font-serif text-2xl font-bold transition-smooth hover:text-primary"
             >
               <span className={showSolidStyle ? "text-foreground" : "text-white drop-shadow-lg"}>
