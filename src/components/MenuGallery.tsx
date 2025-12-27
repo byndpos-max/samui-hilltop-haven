@@ -70,6 +70,7 @@ const MenuGallery = () => {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [lightboxApi, setLightboxApi] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [lightboxSlide, setLightboxSlide] = useState(0);
 
   // Track main carousel slide changes
   useEffect(() => {
@@ -86,6 +87,22 @@ const MenuGallery = () => {
       mainApi.off("select", onSelect);
     };
   }, [mainApi]);
+
+  // Track lightbox carousel slide changes
+  useEffect(() => {
+    if (!lightboxApi) return;
+
+    const onSelect = () => {
+      setLightboxSlide(lightboxApi.selectedScrollSnap());
+    };
+
+    lightboxApi.on("select", onSelect);
+    onSelect();
+
+    return () => {
+      lightboxApi.off("select", onSelect);
+    };
+  }, [lightboxApi]);
 
   // Sync lightbox carousel when opened
   useEffect(() => {
@@ -262,7 +279,7 @@ const MenuGallery = () => {
                         key={index}
                         onClick={() => lightboxApi?.scrollTo(index)}
                         className={`h-2 rounded-full transition-smooth ${
-                          lightboxApi?.selectedScrollSnap() === index
+                          lightboxSlide === index
                             ? "w-6 bg-primary" 
                             : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
                         }`}
