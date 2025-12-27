@@ -79,7 +79,7 @@ const Contact = () => {
           
           <div className="relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-soft animate-in fade-in slide-in-from-right duration-1000">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126014.28507279397!2d99.93784404999999!3d9.5088449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3054f47d2e143247%3A0x30f0d67e71b3e9f!2sKoh%20Samui%2C%20Surat%20Thani%2C%20Thailand!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.378949988183!2d99.9646353!3d9.530517299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3054f797b3daac61%3A0x8ac743ac8948085f!2sSora%20Sierra%20%E2%80%93%20Sky%20Above%20Samui!5e1!3m2!1sen!2sth!4v1766819332562!5m2!1sen!2sth"
               width="100%"
               height="100%"
               style={{ border: 0 }}
