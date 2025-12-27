@@ -1,8 +1,16 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
+import { useState, useCallback, useEffect } from "react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 // Import all menu pages
 import page01 from "@/assets/menu/page-01.webp";
@@ -59,63 +67,114 @@ const menuPages = [
 
 const MenuGallery = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [mainApi, setMainApi] = useState<CarouselApi>();
+  const [lightboxApi, setLightboxApi] = useState<CarouselApi>();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const openLightbox = (index: number) => setSelectedIndex(index);
-  const closeLightbox = () => setSelectedIndex(null);
-  
-  const goToPrevious = () => {
-    if (selectedIndex !== null) {
-      setSelectedIndex(selectedIndex === 0 ? menuPages.length - 1 : selectedIndex - 1);
-    }
-  };
-  
-  const goToNext = () => {
-    if (selectedIndex !== null) {
-      setSelectedIndex(selectedIndex === menuPages.length - 1 ? 0 : selectedIndex + 1);
-    }
-  };
+  // Track main carousel slide changes
+  useEffect(() => {
+    if (!mainApi) return;
 
-  // Handle keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowLeft") goToPrevious();
-    if (e.key === "ArrowRight") goToNext();
+    const onSelect = () => {
+      setCurrentSlide(mainApi.selectedScrollSnap());
+    };
+
+    mainApi.on("select", onSelect);
+    onSelect();
+
+    return () => {
+      mainApi.off("select", onSelect);
+    };
+  }, [mainApi]);
+
+  // Sync lightbox carousel when opened
+  useEffect(() => {
+    if (lightboxApi && selectedIndex !== null) {
+      lightboxApi.scrollTo(selectedIndex, true);
+    }
+  }, [lightboxApi, selectedIndex]);
+
+  const openLightbox = useCallback((index: number) => {
+    setSelectedIndex(index);
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setSelectedIndex(null);
+  }, []);
+
+  // Handle keyboard navigation in lightbox
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "Escape") closeLightbox();
-  };
+    if (e.key === "ArrowLeft") lightboxApi?.scrollPrev();
+    if (e.key === "ArrowRight") lightboxApi?.scrollNext();
+  }, [closeLightbox, lightboxApi]);
 
   return (
     <section className="py-20 px-4 bg-muted/30 pt-28">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto max-w-5xl">
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom duration-1000">
           <h1 className="font-serif text-4xl font-bold text-foreground mb-4 md:text-5xl">
             Our Full Menu
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Browse through our complete menu featuring authentic Thai cuisine, all-day brunch, healthy bowls, signature cocktails, and more.
+            Swipe through our complete menu. Tap any page to enlarge.
           </p>
         </div>
 
-        {/* Menu Grid */}
-        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {menuPages.map((page, index) => (
-            <button
-              key={index}
-              onClick={() => openLightbox(index)}
-              className="group relative aspect-[3/4] overflow-hidden rounded-lg shadow-soft hover:shadow-glow transition-smooth focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            >
-              <img
-                src={page.src}
-                alt={`Menu page ${index + 1} - ${page.title}`}
-                className="h-full w-full object-cover transition-smooth group-hover:scale-105"
-                loading="lazy"
+        {/* Main Carousel */}
+        <div className="relative px-12 md:px-16">
+          <Carousel
+            setApi={setMainApi}
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {menuPages.map((page, index) => (
+                <CarouselItem 
+                  key={index} 
+                  className="pl-2 md:pl-4 basis-[85%] sm:basis-[70%] md:basis-[50%] lg:basis-[40%]"
+                >
+                  <button
+                    onClick={() => openLightbox(index)}
+                    className="group relative aspect-[3/4] w-full overflow-hidden rounded-xl shadow-soft hover:shadow-glow transition-smooth focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  >
+                    <img
+                      src={page.src}
+                      alt={`Menu page ${index + 1} - ${page.title}`}
+                      className="h-full w-full object-cover transition-smooth group-hover:scale-105"
+                      loading={index < 5 ? "eager" : "lazy"}
+                    />
+                    <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-smooth" />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent p-4">
+                      <p className="text-sm text-white font-medium">{page.title}</p>
+                      <p className="text-xs text-white/70">Page {index + 1} of {menuPages.length}</p>
+                    </div>
+                  </button>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0 h-10 w-10 bg-background/90 hover:bg-background shadow-soft" />
+            <CarouselNext className="right-0 h-10 w-10 bg-background/90 hover:bg-background shadow-soft" />
+          </Carousel>
+
+          {/* Page Indicator */}
+          <div className="flex justify-center mt-6 gap-1.5">
+            {menuPages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => mainApi?.scrollTo(index)}
+                className={`h-2 rounded-full transition-smooth ${
+                  index === currentSlide 
+                    ? "w-6 bg-primary" 
+                    : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
+                aria-label={`Go to page ${index + 1}`}
               />
-              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-smooth flex items-center justify-center">
-                <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-smooth drop-shadow-lg" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 to-transparent p-2">
-                <p className="text-xs text-white font-medium truncate">{page.title}</p>
-              </div>
-            </button>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Lightbox Dialog */}
@@ -126,7 +185,7 @@ const MenuGallery = () => {
           >
             <VisuallyHidden>
               <DialogTitle>
-                {selectedIndex !== null ? `Menu Page ${selectedIndex + 1} - ${menuPages[selectedIndex].title}` : "Menu Page"}
+                Menu Page Viewer
               </DialogTitle>
             </VisuallyHidden>
             
@@ -135,11 +194,8 @@ const MenuGallery = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b border-border/50">
                   <span className="text-sm text-muted-foreground">
-                    Page {selectedIndex + 1} of {menuPages.length}
+                    Swipe to navigate
                   </span>
-                  <h3 className="font-serif text-lg font-semibold text-foreground">
-                    {menuPages[selectedIndex].title}
-                  </h3>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -150,42 +206,58 @@ const MenuGallery = () => {
                   </Button>
                 </div>
 
-                {/* Image Container */}
-                <div className="flex-1 relative flex items-center justify-center p-4 overflow-hidden">
-                  <img
-                    src={menuPages[selectedIndex].src}
-                    alt={`Menu page ${selectedIndex + 1} - ${menuPages[selectedIndex].title}`}
-                    className="max-h-full max-w-full object-contain rounded-lg shadow-soft"
-                  />
-
-                  {/* Navigation Arrows */}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={goToPrevious}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background shadow-soft h-12 w-12"
+                {/* Lightbox Carousel */}
+                <div className="flex-1 relative flex items-center justify-center overflow-hidden">
+                  <Carousel
+                    setApi={setLightboxApi}
+                    opts={{
+                      align: "center",
+                      loop: true,
+                      startIndex: selectedIndex,
+                    }}
+                    className="w-full h-full"
                   >
-                    <ChevronLeft className="h-6 w-6" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={goToNext}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background shadow-soft h-12 w-12"
-                  >
-                    <ChevronRight className="h-6 w-6" />
-                  </Button>
+                    <CarouselContent className="h-full -ml-0">
+                      {menuPages.map((page, index) => (
+                        <CarouselItem key={index} className="h-full pl-0 flex items-center justify-center p-4">
+                          <img
+                            src={page.src}
+                            alt={`Menu page ${index + 1} - ${page.title}`}
+                            className="max-h-full max-w-full object-contain rounded-lg shadow-soft"
+                          />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    
+                    {/* Navigation Arrows - Hidden on mobile, shown on larger screens */}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => lightboxApi?.scrollPrev()}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background shadow-soft h-12 w-12 hidden sm:flex"
+                    >
+                      <ChevronLeft className="h-6 w-6" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => lightboxApi?.scrollNext()}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background shadow-soft h-12 w-12 hidden sm:flex"
+                    >
+                      <ChevronRight className="h-6 w-6" />
+                    </Button>
+                  </Carousel>
                 </div>
 
                 {/* Thumbnail Navigation */}
                 <div className="p-4 border-t border-border/50 overflow-x-auto">
-                  <div className="flex gap-2 justify-center">
+                  <div className="flex gap-2 justify-start sm:justify-center min-w-max sm:min-w-0">
                     {menuPages.map((page, index) => (
                       <button
                         key={index}
-                        onClick={() => setSelectedIndex(index)}
-                        className={`flex-shrink-0 w-12 h-16 rounded overflow-hidden transition-smooth ${
-                          index === selectedIndex 
+                        onClick={() => lightboxApi?.scrollTo(index)}
+                        className={`flex-shrink-0 w-10 h-14 sm:w-12 sm:h-16 rounded overflow-hidden transition-smooth ${
+                          lightboxApi?.selectedScrollSnap() === index
                             ? "ring-2 ring-primary ring-offset-2" 
                             : "opacity-50 hover:opacity-100"
                         }`}
