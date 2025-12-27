@@ -1,12 +1,32 @@
 import heroView from "@/assets/hero-view.jpg";
 import entrance from "@/assets/entrance.jpg";
 import interiorSwings from "@/assets/interior-swings.jpg";
+import dish01 from "@/assets/gallery/dish-01.jpg";
+import dish02 from "@/assets/gallery/dish-02.jpg";
+import dish03 from "@/assets/gallery/dish-03.jpg";
+import dish04 from "@/assets/gallery/dish-04.jpg";
+import dish05 from "@/assets/gallery/dish-05.jpg";
+import dish06 from "@/assets/gallery/dish-06.jpg";
+import dish07 from "@/assets/gallery/dish-07.jpg";
+import dish08 from "@/assets/gallery/dish-08.jpg";
+import dish09 from "@/assets/gallery/dish-09.jpg";
+import dish10 from "@/assets/gallery/dish-10.jpg";
 
 const Gallery = () => {
   const images = [
-    { src: heroView, alt: "Breathtaking ocean view from Sky Above Samui", span: "md:col-span-2" },
-    { src: entrance, alt: "Entrance to Sky Above Samui with tropical plants" },
+    { src: heroView, alt: "Breathtaking ocean view from Sora Sierra", span: "md:col-span-2" },
+    { src: entrance, alt: "Entrance to Sora Sierra with tropical plants" },
     { src: interiorSwings, alt: "Interior dining area with hanging swings" },
+    { src: dish01, alt: "Crispy grilled chicken with sweet chili sauce" },
+    { src: dish02, alt: "Thai cuisine spread with curry, soup and fresh vegetables", span: "md:col-span-2" },
+    { src: dish03, alt: "Shrimp fried rice with fresh cucumber garnish" },
+    { src: dish04, alt: "Pad Thai wrapped in egg with shrimp and peanuts" },
+    { src: dish05, alt: "Creamy Panang curry with chicken" },
+    { src: dish06, alt: "Thai curry dishes with steamed rice", span: "md:col-span-2" },
+    { src: dish07, alt: "Cashew chicken stir-fry with vegetables" },
+    { src: dish08, alt: "Stir-fried chicken with cashews and bell peppers" },
+    { src: dish09, alt: "Crispy sweet potato fries with spicy dipping sauce" },
+    { src: dish10, alt: "Shredded taro fries with Thai chili sauce" },
   ];
 
   return (
@@ -21,18 +41,19 @@ const Gallery = () => {
           </p>
         </div>
         
-        <div className="grid gap-4 md:grid-cols-3 md:grid-rows-2">
+        <div className="grid gap-4 md:grid-cols-3">
           {images.map((image, index) => (
             <div 
               key={index}
               className={`group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-glow transition-smooth ${image.span || ''} animate-in fade-in zoom-in duration-1000`}
-              style={{ animationDelay: `${index * 150}ms` }}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="aspect-[4/3] md:aspect-auto md:h-full">
+              <div className="aspect-[4/3]">
                 <img 
                   src={image.src} 
                   alt={image.alt}
                   className="h-full w-full object-cover transition-smooth group-hover:scale-110"
+                  loading="lazy"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-smooth" />
