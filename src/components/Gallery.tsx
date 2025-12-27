@@ -11,6 +11,16 @@ import dish07 from "@/assets/gallery/dish-07.jpg";
 import dish08 from "@/assets/gallery/dish-08.jpg";
 import dish09 from "@/assets/gallery/dish-09.jpg";
 import dish10 from "@/assets/gallery/dish-10.jpg";
+import dish11 from "@/assets/gallery/dish-11.jpg";
+import dish12 from "@/assets/gallery/dish-12.jpg";
+import dish13 from "@/assets/gallery/dish-13.jpg";
+import dish14 from "@/assets/gallery/dish-14.jpg";
+import ambiance01 from "@/assets/gallery/ambiance-01.jpg";
+import ambiance02 from "@/assets/gallery/ambiance-02.jpg";
+import ambiance03 from "@/assets/gallery/ambiance-03.jpg";
+import ambiance04 from "@/assets/gallery/ambiance-04.jpg";
+import ambiance05 from "@/assets/gallery/ambiance-05.jpg";
+import ambiance06 from "@/assets/gallery/ambiance-06.jpg";
 
 const Gallery = () => {
   const images = [
@@ -27,6 +37,16 @@ const Gallery = () => {
     { src: dish08, alt: "Stir-fried chicken with cashews and bell peppers" },
     { src: dish09, alt: "Crispy sweet potato fries with spicy dipping sauce" },
     { src: dish10, alt: "Shredded taro fries with Thai chili sauce" },
+    { src: dish11, alt: "Smoked salmon bagel with cream cheese and capers" },
+    { src: dish12, alt: "Full English breakfast with eggs, sausage, bacon and beans", span: "md:col-span-2" },
+    { src: dish13, alt: "Eggs Benedict with hollandaise sauce and latte" },
+    { src: dish14, alt: "Gourmet sandwich with crispy potatoes" },
+    { src: ambiance01, alt: "Sora Sierra entrance with tropical architecture", span: "md:col-span-2" },
+    { src: ambiance02, alt: "Couple enjoying breakfast with ocean view" },
+    { src: ambiance03, alt: "Friends dining together with panoramic sea view", span: "md:col-span-2" },
+    { src: ambiance04, alt: "Group dining under thatched roof with ocean backdrop" },
+    { src: ambiance05, alt: "Guests enjoying Thai feast with jungle and sea views", span: "md:col-span-2" },
+    { src: ambiance06, alt: "Friends laughing over delicious Thai food" },
   ];
 
   return (
