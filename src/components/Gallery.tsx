@@ -21,6 +21,16 @@ import ambiance03 from "@/assets/gallery/ambiance-03.jpg";
 import ambiance04 from "@/assets/gallery/ambiance-04.jpg";
 import ambiance05 from "@/assets/gallery/ambiance-05.jpg";
 import ambiance06 from "@/assets/gallery/ambiance-06.jpg";
+import ambiance07 from "@/assets/gallery/ambiance-07.jpg";
+import ambiance08 from "@/assets/gallery/ambiance-08.jpg";
+import ambiance09 from "@/assets/gallery/ambiance-09.jpg";
+import ambiance10 from "@/assets/gallery/ambiance-10.jpg";
+import ambiance11 from "@/assets/gallery/ambiance-11.jpg";
+import ambiance12 from "@/assets/gallery/ambiance-12.jpg";
+import ambiance13 from "@/assets/gallery/ambiance-13.jpg";
+import ambiance14 from "@/assets/gallery/ambiance-14.jpg";
+import ambiance15 from "@/assets/gallery/ambiance-15.jpg";
+import ambiance16 from "@/assets/gallery/ambiance-16.jpg";
 
 const Gallery = () => {
   const images = [
@@ -47,6 +57,16 @@ const Gallery = () => {
     { src: ambiance04, alt: "Group dining under thatched roof with ocean backdrop" },
     { src: ambiance05, alt: "Guests enjoying Thai feast with jungle and sea views", span: "md:col-span-2" },
     { src: ambiance06, alt: "Friends laughing over delicious Thai food" },
+    { src: ambiance07, alt: "Guests sharing a Thai feast in tropical setting" },
+    { src: ambiance08, alt: "Friends dining with mountain jungle views", span: "md:col-span-2" },
+    { src: ambiance09, alt: "Group enjoying Thai cuisine in open-air restaurant" },
+    { src: ambiance10, alt: "Happy guests savoring Thai dishes with views" },
+    { src: ambiance11, alt: "Friends gathered for Thai feast at Sora Sierra", span: "md:col-span-2" },
+    { src: ambiance12, alt: "Group dining with spectacular ocean and jungle views" },
+    { src: ambiance13, alt: "Couple enjoying romantic dinner with sea view", span: "md:col-span-2" },
+    { src: ambiance14, alt: "Thai feast spread with panoramic ocean backdrop" },
+    { src: ambiance15, alt: "Authentic Thai dishes with tropical garden view", span: "md:col-span-2" },
+    { src: ambiance16, alt: "Thai cuisine display with island mountain views" },
   ];
 
   return (
