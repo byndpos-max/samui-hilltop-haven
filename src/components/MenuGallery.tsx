@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   Carousel,
@@ -181,16 +181,17 @@ const MenuGallery = () => {
 
         {/* Lightbox Dialog */}
         <Dialog open={selectedIndex !== null} onOpenChange={() => closeLightbox()}>
-          <DialogContent 
-            className="max-w-5xl w-[95vw] h-[90vh] p-0 bg-background/95 backdrop-blur-md border-none"
+          <DialogContent
+            className="max-w-5xl w-[95vw] h-[92dvh] max-h-[92dvh] p-0 bg-background/95 backdrop-blur-md border-none overflow-hidden flex flex-col"
             onKeyDown={handleKeyDown}
           >
             <VisuallyHidden>
-              <DialogTitle>
-                Menu Page Viewer
-              </DialogTitle>
+              <DialogTitle>Menu Page Viewer</DialogTitle>
+              <DialogDescription>
+                Swipe left or right to view the next menu page.
+              </DialogDescription>
             </VisuallyHidden>
-            
+
             {selectedIndex !== null && (
               <div className="relative h-full flex flex-col">
                 {/* Header */}
@@ -226,8 +227,7 @@ const MenuGallery = () => {
                             <img
                               src={page.src}
                               alt={`Menu page ${index + 1} - ${page.title}`}
-                              className="max-h-full max-w-full w-auto h-auto object-contain rounded-lg shadow-soft"
-                              style={{ maxHeight: 'calc(100%)', maxWidth: 'calc(100%)' }}
+                              className="max-w-full w-auto h-auto object-contain rounded-lg shadow-soft max-h-[calc(92dvh-10rem)]"
                             />
                           </div>
                         </CarouselItem>
