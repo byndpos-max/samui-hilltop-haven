@@ -255,7 +255,7 @@ const MenuGallery = () => {
                 </div>
 
                 {/* Thumbnail Navigation */}
-                <div className="p-4 border-t border-border/50 overflow-x-auto">
+                <div className="flex-shrink-0 p-4 border-t border-border/50 overflow-x-auto bg-background">
                   <div className="flex gap-2 justify-start sm:justify-center min-w-max sm:min-w-0">
                     {menuPages.map((page, index) => (
                       <button
