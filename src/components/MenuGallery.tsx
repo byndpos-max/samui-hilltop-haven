@@ -212,18 +212,10 @@ const MenuGallery = () => {
             {selectedIndex !== null && (
               <div className="relative h-full flex flex-col">
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b border-border/50">
+                <div className="flex items-center justify-center p-4 border-b border-border/50">
                   <span className="text-sm text-muted-foreground">
                     Swipe to navigate
                   </span>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={closeLightbox}
-                    className="hover:bg-muted"
-                  >
-                    <X className="h-5 w-5" />
-                  </Button>
                 </div>
 
                 {/* Lightbox Carousel */}
