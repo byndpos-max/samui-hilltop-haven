@@ -8,6 +8,10 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // Pages without a dark hero that need solid nav text
+  const needsSolidNav = location.pathname === '/menu' || location.pathname === '/gallery';
+  const showSolidStyle = isScrolled || needsSolidNav;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,8 +48,8 @@ const Navigation = () => {
     <>
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
-          isScrolled 
-            ? "bg-background/95 backdrop-blur-md shadow-soft" 
+          showSolidStyle 
+            ? "bg-background/95 backdrop-blur-md shadow-soft"
             : "bg-transparent"
         }`}
       >
@@ -55,7 +59,7 @@ const Navigation = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="font-serif text-2xl font-bold transition-smooth hover:text-primary"
             >
-              <span className={isScrolled ? "text-foreground" : "text-white drop-shadow-lg"}>
+              <span className={showSolidStyle ? "text-foreground" : "text-white drop-shadow-lg"}>
                 Sora Sierra
               </span>
             </button>
@@ -66,7 +70,7 @@ const Navigation = () => {
                   key={link.id}
                   onClick={() => handleNavigation(link.id, link.routePath)}
                   className={`font-medium transition-smooth hover:text-primary ${
-                    isScrolled ? "text-foreground" : "text-white drop-shadow-lg"
+                    showSolidStyle ? "text-foreground" : "text-white drop-shadow-lg"
                   }`}
                 >
                   {link.label}
@@ -76,7 +80,7 @@ const Navigation = () => {
                 size="sm"
                 asChild
                 className={`transition-smooth ${
-                  isScrolled 
+                  showSolidStyle 
                     ? "bg-primary hover:bg-primary/90" 
                     : "bg-white/20 backdrop-blur-sm hover:bg-white hover:text-foreground border-2 border-white text-white"
                 }`}
@@ -90,7 +94,7 @@ const Navigation = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`md:hidden transition-smooth ${
-                isScrolled ? "text-foreground" : "text-white"
+                showSolidStyle ? "text-foreground" : "text-white"
               }`}
               aria-label="Toggle menu"
             >
