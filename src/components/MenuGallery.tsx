@@ -110,9 +110,9 @@ const MenuGallery = () => {
   }, [closeLightbox, lightboxApi]);
 
   return (
-    <section className="py-20 px-4 bg-muted/30 pt-28">
+    <section className="py-20 px-4 bg-muted/30 pt-28 min-h-screen">
       <div className="container mx-auto max-w-5xl">
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom duration-1000">
+        <div className="text-center mb-8 animate-in fade-in slide-in-from-bottom duration-1000">
           <h1 className="font-serif text-4xl font-bold text-foreground mb-4 md:text-5xl">
             Our Full Menu
           </h1>
@@ -135,22 +135,24 @@ const MenuGallery = () => {
               {menuPages.map((page, index) => (
                 <CarouselItem 
                   key={index} 
-                  className="pl-2 md:pl-4 basis-[85%] sm:basis-[70%] md:basis-[50%] lg:basis-[40%]"
+                  className="pl-2 md:pl-4 basis-[80%] sm:basis-[60%] md:basis-[45%] lg:basis-[35%]"
                 >
                   <button
                     onClick={() => openLightbox(index)}
-                    className="group relative aspect-[3/4] w-full overflow-hidden rounded-xl shadow-soft hover:shadow-glow transition-smooth focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    className="group relative w-full overflow-hidden rounded-xl shadow-soft hover:shadow-glow transition-smooth focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   >
-                    <img
-                      src={page.src}
-                      alt={`Menu page ${index + 1} - ${page.title}`}
-                      className="h-full w-full object-cover transition-smooth group-hover:scale-105"
-                      loading={index < 5 ? "eager" : "lazy"}
-                    />
-                    <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-smooth" />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent p-4">
-                      <p className="text-sm text-white font-medium">{page.title}</p>
-                      <p className="text-xs text-white/70">Page {index + 1} of {menuPages.length}</p>
+                    <div className="relative w-full" style={{ paddingBottom: '133.33%' }}>
+                      <img
+                        src={page.src}
+                        alt={`Menu page ${index + 1} - ${page.title}`}
+                        className="absolute inset-0 h-full w-full object-cover transition-smooth group-hover:scale-105"
+                        loading={index < 5 ? "eager" : "lazy"}
+                      />
+                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-smooth" />
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent p-4">
+                        <p className="text-sm text-white font-medium">{page.title}</p>
+                        <p className="text-xs text-white/70">Page {index + 1} of {menuPages.length}</p>
+                      </div>
                     </div>
                   </button>
                 </CarouselItem>
