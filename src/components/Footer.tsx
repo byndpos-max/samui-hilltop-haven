@@ -73,8 +73,19 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-12 border-t border-background/20 pt-8 text-center text-sm text-background/60">
+        <div className="mt-12 border-t border-background/20 pt-8 text-center text-sm text-background/60 space-y-2">
           <p>&copy; {new Date().getFullYear()} Sora Sierra. All rights reserved.</p>
+          <p>
+            Designed by{" "}
+            <a 
+              href="https://samuiisland.online/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="underline hover:text-background transition-smooth"
+            >
+              Samui Island Online
+            </a>
+          </p>
         </div>
       </div>
     </footer>
